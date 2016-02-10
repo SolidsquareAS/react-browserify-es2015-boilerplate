@@ -11,8 +11,11 @@ import browserSync from 'browser-sync';
 
 const $ = gulpLoadPlugins();
 const dest = './build';
+const jsDest = dest + '/js';
+const cssDest = dest + '/css';
+const sassFolder = './src/sass/**/*.scss';
 
-gulp.task('browserify', () => {
+gulp.task('js:browserify', () => {
   var b = browserify('./src/js/index.js').transform(babel);
   return b.bundle()
     .pipe(source('index.js'))
@@ -21,11 +24,11 @@ gulp.task('browserify', () => {
     .pipe($.uglify())
     .on('error', log)
     .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest(dest + '/js'))
+    .pipe(gulp.dest(jsDest))
 });
 
-gulp.task('lint', () => {
-  return gulp.src('./src/js/**/*')
+gulp.task('js:lint', () => {
+  return gulp.src('./src/js/**/*.js')
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
@@ -33,14 +36,25 @@ gulp.task('lint', () => {
 
 gulp.task('html', () => {
   return gulp.src('src/*.html')
-    .pipe($.if('*.js', $.uglify()))
-    .pipe($.if('*.css', $.cssnano()))
     .pipe($.if('*.html', $.htmlmin({collapseWhitespace: true})))
     .pipe(gulp.dest(dest));
 });
 
 
-gulp.task('serve', ['lint', 'browserify', 'html'], () => {
+gulp.task('css:sass', function () {
+  return gulp.src(sassFolder)
+    .pipe($.sass({
+      outputStyle: 'compressed'
+    }).on('error', $.sass.logError))
+    .pipe(gulp.dest(cssDest));
+});
+
+gulp.task('css', ['css:sass']);
+gulp.task('js', ['js:lint', 'js:browserify']);
+
+gulp.task('build', ['js', 'html', 'css']);
+
+gulp.task('serve', ['build'], () => {
   browserSync({
     notify: false,
     port: 9000,
@@ -51,10 +65,13 @@ gulp.task('serve', ['lint', 'browserify', 'html'], () => {
 
   gulp.watch([
     'src/**/*.html',
-    'build/**/*.js'
+    'build/**/*.js',
+    'build/**/*.css'
   ]).on('change', browserSync.reload);
 
-  gulp.watch('src/js/**/*.js', ['browserify']);
+  gulp.watch('src/js/**/*.js', ['js']);
+  gulp.watch('src/**/*.html', ['html']);
+  gulp.watch('src/**/*.scss', ['css']);
 });
 
 gulp.task('default', ['serve']);

@@ -1,3 +1,5 @@
 import React from 'react';
+import { render } from 'react-dom';
+import HomePage from './components/HomePage';
 
-export const foo = <div>Hello</div>;
+render(<HomePage />, document.getElementById('reactContainer'));
