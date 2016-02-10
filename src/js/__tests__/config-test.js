@@ -1,6 +1,6 @@
 jest.dontMock('../config');
 
-import config from '../config';
+const config = require('../config');
 
 describe('config', () => {
     const defaultPort = 5000;
