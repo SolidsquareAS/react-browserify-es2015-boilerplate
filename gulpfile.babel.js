@@ -1,14 +1,14 @@
-var gulp = require('gulp');
-var eslint = require('gulp-eslint');
-var browserify = require('browserify');
-var babel = require('babelify');
-var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
-var sourcemaps = require('gulp-sourcemaps');
-var uglify = require('gulp-uglify');
-var gutil = require('gulp-util');
+import gulp from 'gulp';
+import eslint from 'gulp-eslint';
+import browserify from 'browserify';
+import babel from 'babelify';
+import source from 'vinyl-source-stream';
+import buffer from 'vinyl-buffer';
+import sourcemaps from 'gulp-sourcemaps';
+import uglify from 'gulp-uglify';
+import gutil from 'gulp-util';
 
-gulp.task('browserify', function(){
+gulp.task('browserify', () => {
     var b = browserify('./src/js/index.js').transform(babel);
     return b.bundle()
         .pipe(source('index.js'))
@@ -20,7 +20,7 @@ gulp.task('browserify', function(){
         .pipe(gulp.dest('./build/js'))
 });
 
-gulp.task('lint', function(){
+gulp.task('lint', () => {
     return gulp.src('./src/js/**/*')
         .pipe(eslint())
         .pipe(eslint.format())
