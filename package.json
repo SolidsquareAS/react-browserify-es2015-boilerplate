@@ -7,14 +7,20 @@
   "scripts": {
     "test": "jest"
   },
-  "author": {
-    "name": "Daniel Martinsen Sjølie",
-    "email": "danielsjolie@gmail.com"
-  },
+  "contributors": [
+    {
+      "name": "Daniel Martinsen Sjølie",
+      "email": "danielsjolie@gmail.com"
+    },
+    {
+      "name": "Fredrik Oterholt",
+      "email": "fredrik.oterholt@gmail.com"
+    }
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dannyjolie/react-browserify-es2015-boilerplate.git"
+    "url": "https://github.com/SolidsquareAS/socialsquare.git"
   },
   "devDependencies": {
     "babel-jest": "^6.0.1",
@@ -40,10 +46,12 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
-    "react": "^0.14.7"
+    "express": "^4.13.4",
+    "react": "^0.14.7",
+    "react-router": "^2.0.0"
   },
   "jest": {
-    "scriptPreprocessor": "node_modules/babel-jest",
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
     "testFileExtensions": [
       "es6",
       "js",
@@ -52,7 +60,8 @@
     "moduleFileExtensions": [
       "js",
       "json",
-      "es6"
+      "es6",
+      "react"
     ],
     "unmockedModulePathPatterns": [
       "react"

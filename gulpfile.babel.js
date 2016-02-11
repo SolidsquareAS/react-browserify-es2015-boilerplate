@@ -32,6 +32,8 @@ gulp.task('js:lint', () => {
     .pipe(eslint.failAfterError());
 });
 
+gulp.task('js', ['js:lint', 'js:browserify']);
+
 gulp.task('html', () => {
   return gulp.src('src/public/index.html')
     .pipe(sourcemaps.init({loadMaps: true}))
@@ -42,7 +44,7 @@ gulp.task('html', () => {
     .pipe(gulp.dest(dest));
 });
 
-gulp.task('css:sass', function () {
+gulp.task('css:sass', () => {
   return gulp.src('./src/public/sass/main.scss')
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe($.sass({
@@ -53,7 +55,6 @@ gulp.task('css:sass', function () {
 });
 
 gulp.task('css', ['css:sass']);
-gulp.task('js', ['js:lint', 'js:browserify']);
 
 gulp.task('build', ['js', 'html', 'css']);
 
