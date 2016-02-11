@@ -13,10 +13,8 @@ const $ = gulpLoadPlugins();
 const dest = './build';
 const jsDest = dest + '/js';
 const cssDest = dest + '/css';
-const sassFolder = './src/sass/**/*.scss';
-
 gulp.task('js:browserify', () => {
-  var b = browserify('./src/js/index.js').transform(babel);
+  var b = browserify('./src/public/js/index.js').transform(babel);
   return b.bundle()
     .pipe(source('index.js'))
     .pipe(buffer())
@@ -28,24 +26,29 @@ gulp.task('js:browserify', () => {
 });
 
 gulp.task('js:lint', () => {
-  return gulp.src('./src/js/**/*.js')
+  return gulp.src('./src/**/*.js')
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
 });
 
 gulp.task('html', () => {
-  return gulp.src('src/*.html')
-    .pipe($.if('*.html', $.htmlmin({collapseWhitespace: true})))
+  return gulp.src('src/public/index.html')
+    .pipe(sourcemaps.init({loadMaps: true}))
+    .pipe($.if('*.html', $.htmlmin({
+      collapseWhitespace: true
+    }).on('error', $.sass.logError)))
+    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(dest));
 });
 
-
 gulp.task('css:sass', function () {
-  return gulp.src(sassFolder)
+  return gulp.src('./src/public/sass/main.scss')
+    .pipe(sourcemaps.init({loadMaps: true}))
     .pipe($.sass({
       outputStyle: 'compressed'
     }).on('error', $.sass.logError))
+    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(cssDest));
 });
 
