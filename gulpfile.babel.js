@@ -8,6 +8,7 @@ import babel from 'babelify';
 import source from 'vinyl-source-stream';
 import buffer from 'vinyl-buffer';
 import browserSync from 'browser-sync';
+import historyApiFallback from 'connect-history-api-fallback';
 
 const $ = gulpLoadPlugins();
 const dest = './build';
@@ -64,7 +65,8 @@ gulp.task('serve', ['build'], () => {
     port: 9000,
     server: {
       baseDir: [dest]
-    }
+    },
+    middleware: [ historyApiFallback() ]
   });
 
   gulp.watch([
