@@ -1,9 +1,9 @@
 {
-  "name": "react-browserify-es2015-boilerplate",
+  "name": "socialsquare",
   "private": true,
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/public/js/index.js",
   "scripts": {
     "test": "jest",
     "build:server": "webpack --config webpack.server.config.js",
@@ -49,6 +49,7 @@
     "gulp-util": "^3.0.7",
     "jest-cli": "^0.8.2",
     "react-dom": "^0.14.7",
+    "twitter": "^1.2.5",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "webpack": "^1.12.13"

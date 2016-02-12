@@ -6,10 +6,13 @@ import { match, RouterContext } from 'react-router'
 import compression from 'compression';
 import {host, port} from './src/private/js/components/Config';
 import routes from './src/private/js/routes';
+import streams from './src/private/js/api/streams';
 var app = express();
 
 app.use(express.static(path.join(__dirname, 'build/public')));
 app.use(compression());
+
+app.use('/api/streams', streams);
 
 app.get('*', (req, res) => {
   match({routes: routes, location: req.url}, (err, redirect, props) => {
