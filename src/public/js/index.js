@@ -1,11 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom';
-import HomePage from '../../private/js/components/HomePage';
 
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, browserHistory } from 'react-router';
+import routes from '../../private/js/routes';
 
 render((
-  <Router history={browserHistory}>
-    <Route path="/" component={HomePage}/>
-  </Router>
+  <Router history={browserHistory} routes={routes} />
 ), document.getElementById('reactContainer'));
