@@ -11,7 +11,7 @@ import browserSync from 'browser-sync';
 import historyApiFallback from 'connect-history-api-fallback';
 
 const $ = gulpLoadPlugins();
-const dest = './build';
+const dest = './build/public';
 const jsDest = dest + '/js';
 const cssDest = dest + '/css';
 gulp.task('js:browserify', () => {
@@ -66,7 +66,7 @@ gulp.task('serve', ['build'], () => {
     server: {
       baseDir: [dest]
     },
-    middleware: [ historyApiFallback() ]
+    middleware: [historyApiFallback()]
   });
 
   gulp.watch([

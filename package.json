@@ -5,7 +5,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build:server": "webpack --config webpack.server.config.js",
+    "build": "gulp build && npm run build:server",
+    "start": "npm run build && node build/server.bundle.js"
   },
   "contributors": [
     {
@@ -24,11 +27,13 @@
   },
   "devDependencies": {
     "babel-jest": "^6.0.1",
+    "babel-loader": "^6.2.2",
     "babel-preset-es2015": "^6.5.0",
     "babel-preset-react": "^6.5.0",
     "babelify": "^7.2.0",
     "browser-sync": "^2.11.1",
     "browserify": "^13.0.0",
+    "compression": "^1.6.1",
     "connect-history-api-fallback": "^1.1.0",
     "eslint-plugin-react": "^3.16.1",
     "gulp": "^3.9.1",
@@ -44,7 +49,8 @@
     "jest-cli": "^0.8.2",
     "react-dom": "^0.14.7",
     "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
+    "webpack": "^1.12.13"
   },
   "dependencies": {
     "express": "^4.13.4",
