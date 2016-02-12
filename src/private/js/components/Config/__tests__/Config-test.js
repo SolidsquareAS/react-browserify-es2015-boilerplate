@@ -1,8 +1,8 @@
-jest.dontMock('../config');
+jest.dontMock('./../Config');
 
-const config = require('../config');
+const config = require('./../Config');
 
-describe('config', () => {
+describe('Config', () => {
   const defaultPort = 5000;
   it('should be defined', () => {
     expect(config).toBeDefined();
