@@ -9,6 +9,7 @@ import source from 'vinyl-source-stream';
 import buffer from 'vinyl-buffer';
 import browserSync from 'browser-sync';
 import historyApiFallback from 'connect-history-api-fallback';
+import config from './src/private/js/components/Config'
 
 const $ = gulpLoadPlugins();
 const dest = './build/public';
@@ -59,18 +60,15 @@ gulp.task('css', ['css:sass']);
 
 gulp.task('build', ['js', 'html', 'css']);
 
-gulp.task('serve', ['build'], () => {
+gulp.task('browsersync', () => {
   browserSync({
     notify: false,
-    port: 9000,
-    server: {
-      baseDir: [dest]
-    },
+    proxy: config.host,
     middleware: [historyApiFallback()]
   });
 
   gulp.watch([
-    'src/**/*.html',
+    'build/**/*.html',
     'build/**/*.js',
     'build/**/*.css'
   ]).on('change', browserSync.reload);
@@ -79,5 +77,7 @@ gulp.task('serve', ['build'], () => {
   gulp.watch('src/**/*.html', ['html']);
   gulp.watch('src/**/*.scss', ['css']);
 });
+
+gulp.task('serve', ['build', 'browsersync']);
 
 gulp.task('default', ['serve']);
