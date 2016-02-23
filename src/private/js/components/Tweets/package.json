@@ -1,0 +1,6 @@
+{
+  "name": "Tweets",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./Tweets.js"
+}
