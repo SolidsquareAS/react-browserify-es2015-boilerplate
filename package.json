@@ -8,7 +8,7 @@
     "test": "jest",
     "build:server": "webpack --config webpack.server.config.js",
     "build": "gulp build && npm run build:server",
-    "start": "npm run build && node build/server.bundle.js & gulp browsersync"
+    "start": "npm run build && node build/server.bundle.js"
   },
   "contributors": [
     {
@@ -58,7 +58,9 @@
   "dependencies": {
     "express": "^4.13.4",
     "react": "^0.14.7",
+    "react-redux": "^4.4.0",
     "react-router": "^2.0.0",
+    "react-router-redux": "^3.0.0",
     "redux": "^3.3.1"
   },
   "jest": {
