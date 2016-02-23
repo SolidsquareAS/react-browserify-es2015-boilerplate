@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import Tweet from './../Tweet';
 
-export const Tweets = (tweets) => (
+export const Tweets = ({tweets}) => (
   <ul>
     {tweets.map(tweet =>
       <Tweet key={tweet.id} {...tweet}/>
@@ -16,3 +16,5 @@ Tweets.propTypes = {
     text: PropTypes.string.isRequired
   }).isRequired).isRequired
 };
+
+export default Tweets;

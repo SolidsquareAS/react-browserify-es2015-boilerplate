@@ -9,3 +9,5 @@ Tweet.propTypes = {
   text: PropTypes.string.isRequired,
   timestamp: PropTypes.number.isRequired
 };
+
+export default Tweet;
