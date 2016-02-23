@@ -73,7 +73,7 @@ gulp.task('browsersync', () => {
     'build/**/*.css'
   ]).on('change', browserSync.reload);
 
-  gulp.watch('src/js/**/*.js', ['js']);
+  gulp.watch('src/**/*.js', ['js']);
   gulp.watch('src/**/*.html', ['html']);
   gulp.watch('src/**/*.scss', ['css']);
 });
