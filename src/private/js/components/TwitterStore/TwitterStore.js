@@ -1,5 +1,5 @@
 import {createStore} from 'redux';
-import {getTweetAction, getTweetDeleteAction, getTweetsDeleteAction} from './actions';
+import {getTweetAddAction, getTweetDeleteAction, getTweetsDeleteAction} from './actions';
 import {tweets} from './reducers';
 
 const store = createStore(tweets);
@@ -7,7 +7,7 @@ const store = createStore(tweets);
 let tweetIds = 0;
 
 export const addTweet = (text) => {
-  store.dispatch(getTweetAction(text, tweetIds++));
+  store.dispatch(getTweetAddAction(text, tweetIds++));
 };
 
 export const deleteTweet = (id) => {

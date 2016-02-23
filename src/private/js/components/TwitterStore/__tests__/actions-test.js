@@ -3,17 +3,17 @@ jest.dontMock('./../actions');
 const actions = require('./../actions');
 
 describe('actions', () => {
-  describe('getTweetAction', () => {
+  describe('getTweetAddAction', () => {
     const expectedType = 'ADD_TWEET';
     it('should be a function', () => {
-      expect(typeof actions.getTweetAction).toEqual('function');
+      expect(typeof actions.getAddTweetAction).toEqual('function');
     });
     it('should return a action with text, id and action type', () => {
-      let text = "text", id = 123, action = actions.getTweetAction(text, id);
+      let text = "text", id = 123, action = actions.getAddTweetAction(text, id);
       expect(action).toEqual({id: id, text: text, type: expectedType});
     });
     it('should have expected type', () => {
-      expect(actions.getTweetAction().type).toEqual(expectedType);
+      expect(actions.getAddTweetAction().type).toEqual(expectedType);
     });
     it('should have a constant for adding tweets', () => {
       expect(actions.ADD_TWEET).toEqual(expectedType);

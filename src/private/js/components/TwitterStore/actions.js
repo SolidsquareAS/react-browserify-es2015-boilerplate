@@ -2,7 +2,7 @@ export const ADD_TWEET = 'ADD_TWEET';
 export const DELETE_TWEET = 'DELETE_TWEET';
 export const DELETE_TWEETS = 'DELETE_TWEETS';
 
-export const getTweetAction = (text, id) => {
+export const getTweetAddAction = (text, id) => {
   return {
     id: id,
     text: text,
