@@ -1,0 +1,6 @@
+{
+  "name": "TweetList",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./TweetList.js"
+}

@@ -1,10 +1,8 @@
 import React from 'react';
+import TweetList from './../../containers/TweetList';
 
-const App = () => (
-  <div>app</div>
+export const App = () => (
+  <TweetList/>
 );
-//class App extends Component {
-//
-//}
 
 export default App;
